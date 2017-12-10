@@ -18,14 +18,14 @@ function NanoScheduler (hasWindow) {
   this.hasIdle = this.hasWindow && window.requestIdleCallback
   this.method = this.hasIdle ? window.requestIdleCallback.bind(window) : this.setTimeout
   this.scheduled = false
-  this.stack = []
+  this.queue = []
 }
 
 NanoScheduler.prototype.push = function (cb) {
   assert.equal(typeof cb, 'function', 'nanoscheduler.push: cb should be type function')
   if (!this.hasWindow) return
 
-  this.stack.push(cb)
+  this.queue.push(cb)
   this.schedule()
 }
 
@@ -36,12 +36,12 @@ NanoScheduler.prototype.schedule = function () {
   var self = this
   this.method(function (idleDeadline) {
     var cb
-    while (self.stack.length && idleDeadline.timeRemaining() > 0) {
-      cb = self.stack.shift()
+    while (self.queue.length && idleDeadline.timeRemaining() > 0) {
+      cb = self.queue.shift()
       cb(idleDeadline)
     }
     self.scheduled = false
-    if (self.stack.length) self.schedule()
+    if (self.queue.length) self.schedule()
   })
 }
 
