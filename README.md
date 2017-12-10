@@ -23,7 +23,8 @@ shared between multiple applications.
 
 ## API
 ### `scheduler = NanoScheduler()`
-Create a new scheduler instance.
+Create a new scheduler instance. The instance is shared as a singleton on
+`window` (if available).
 
 ### `scheduler.push(cb)`
 Push a callback into the scheduler, to be executed when the user agent is idle.
