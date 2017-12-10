@@ -2,7 +2,8 @@
 [![npm version][2]][3] [![build status][4]][5]
 [![downloads][8]][9] [![js-standard-style][10]][11]
 
-Schedule work to be completed when the user agent is idle.
+Schedule work to be completed when the user agent is idle. Weighs 270 bytes
+compressed.
 
 ## Usage
 ```js
