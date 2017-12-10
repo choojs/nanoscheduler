@@ -1,7 +1,8 @@
 var assert = require('assert')
 
+var hasWindow = typeof window !== 'undefined'
+
 function createScheduler () {
-  var hasWindow = typeof window !== 'undefined'
   var scheduler
   if (hasWindow) {
     if (!window._nanoScheduler) window._nanoScheduler = new NanoScheduler(true)
