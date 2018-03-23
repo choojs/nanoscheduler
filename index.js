@@ -23,7 +23,6 @@ function NanoScheduler (hasWindow) {
 
 NanoScheduler.prototype.push = function (cb) {
   assert.equal(typeof cb, 'function', 'nanoscheduler.push: cb should be type function')
-  if (!this.hasWindow) return
 
   this.queue.push(cb)
   this.schedule()
